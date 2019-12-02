@@ -36,12 +36,12 @@ public class DemoResource {
     public Response info() {
 
         JsonObject json = Json.createObjectBuilder()
-                .add("clani", Json.createArrayBuilder().add("jm1234"))
-                .add("opis_projekta", "Nas projekt implementira aplikacijo za upravljanje slik.")
-                .add("mikrostoritve", Json.createArrayBuilder().add("http://35.246.130.125:8080/v1/images"))
-                .add("github", Json.createArrayBuilder().add("https://github.com/jmezna/rso-image-catalog"))
-                .add("travis", Json.createArrayBuilder().add("https://travis-ci.org/jmezna/rso-image-catalog"))
-                .add("dockerhub", Json.createArrayBuilder().add("https://hub.docker.com/r/jmezna/rso-image-catalog"))
+                .add("clani", Json.createArrayBuilder().add("gk7880"))
+                .add("opis_projekta", "Moj projekt implementira aplikacijo za nalaganje, pregledovanje ter poslusanje glasbe")
+                .add("mikrostoritve", Json.createArrayBuilder().add("http://songs-5-rso-music-2.apps.us-east-1.starter.openshift-online.com/v1/songs"))
+                .add("github", Json.createArrayBuilder().add("https://github.com/RSO-Music/songs"))
+                .add("travis", Json.createArrayBuilder().add("https://travis-ci.org/RSO-Music/songs"))
+                .add("dockerhub", Json.createArrayBuilder().add("https://hub.docker.com/r/3978hge3gu/songs"))
                 .build();
 
 
