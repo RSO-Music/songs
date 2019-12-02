@@ -13,7 +13,7 @@ spec:
         app: songs
     spec:
       containers:
-      - image: 3978hge3gu/rso-music:1.0.0-SNAPSHOT-14.1
+      - image: 3978hge3gu/songs:1.0.0-SNAPSHOT-2.1
         name: songs
         env:
           - name: KUMULUZEE_DISCOVERY_CLUSTER
