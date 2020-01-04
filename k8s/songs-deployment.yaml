@@ -16,14 +16,14 @@ spec:
       - image: 3978hge3gu/songs:1.0.0-SNAPSHOT-18.1
         name: songs
         env:
-#          - name: KUMULUZEE_DISCOVERY_CLUSTER
-#            value: gcloud
+          - name: KUMULUZEE_DISCOVERY_CLUSTER
+            value: gcloud
           - name: KUMULUZEE_SERVER_BASEURL
             value: http://35.242.139.155:8080
-          - name: KUMULUZEE_DISCOVERY_ETCD_HOSTS
-            value: http://etcd:2379
-          - name: KUMULUZEE_CONFIG_ETCD_HOSTS
-            value: http://etcd:2379
+#          - name: KUMULUZEE_DISCOVERY_ETCD_HOSTS
+#            value: http://etcd:2379
+#          - name: KUMULUZEE_CONFIG_ETCD_HOSTS
+#            value: http://etcd:2379
           - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
             value: jdbc:postgresql://postgres.cxpwezylclm2.us-east-1.rds.amazonaws.com:5432/postgres
           - name: KUMULUZEE_DATASOURCES0_USERNAME
