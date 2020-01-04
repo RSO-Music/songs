@@ -13,7 +13,7 @@ kumuluzee:
       allow-origin: "*"
   datasources:
     - jndi-name: jdbc/ImageMetadataDS
-      connection-url: jdbc:postgresql://192.168.29.109:5432/postgres
+      connection-url: jdbc:postgresql://postgres.cxpwezylclm2.us-east-1.rds.amazonaws.com:5432/postgres
       username: postgres
       password: postgres
       max-pool-size: 20
@@ -34,34 +34,34 @@ kumuluzee:
     web-instrumentation:
       - name: songs-endpoint
         url-pattern: /v1/songs/*
-  streaming:
-    kafka:
-      producer:
-        bootstrap-servers: ark-01.srvs.cloudkafka.com:9094
-        acks: all
-        retries: 0
-        batch-size: 16384
-        linger-ms: 1
-        buffer-memory: 33554432
-        key-serializer: org.apache.kafka.common.serialization.StringSerializer
-        value-serializer: org.apache.kafka.common.serialization.StringSerializer
-        security-protocol: SASL_SSL
-        sasl-mechanism: SCRAM-SHA-256
-        group-id: newer
-        enable-auto-commit: true
-        auto-commit-interval-ms: 1000
-        auto-offset-reset: earliest
-        session-timeout-ms: 30000
-        sasl-jaas-config:
-  rest-client:
-    registrations:
-      - class: image-processing-api
-        url: http://localhost:8082/v1
-        read-timeout: 5000
-configuration-properties:
-  comments-service:
-    enabled: true
-app-properties:
-  amazon-rekognition:
-    access-key:
-    secret-key:
+#  streaming:
+#    kafka:
+#      producer:
+#        bootstrap-servers: ark-01.srvs.cloudkafka.com:9094
+#        acks: all
+#        retries: 0
+#        batch-size: 16384
+#        linger-ms: 1
+#        buffer-memory: 33554432
+#        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#        value-serializer: org.apache.kafka.common.serialization.StringSerializer
+#        security-protocol: SASL_SSL
+#        sasl-mechanism: SCRAM-SHA-256
+#        group-id: newer
+#        enable-auto-commit: true
+#        auto-commit-interval-ms: 1000
+#        auto-offset-reset: earliest
+#        session-timeout-ms: 30000
+#        sasl-jaas-config:
+#  rest-client:
+#    registrations:
+#      - class: image-processing-api
+#        url: http://localhost:8082/v1
+#        read-timeout: 5000
+#configuration-properties:
+#  comments-service:
+#    enabled: true
+#app-properties:
+#  amazon-rekognition:
+#    access-key:
+#    secret-key:
