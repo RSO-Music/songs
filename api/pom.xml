@@ -13,11 +13,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>si.fri.rso.samples</groupId>
-            <artifactId>songs-services</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-core</artifactId>
         </dependency>
@@ -25,15 +20,11 @@
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-servlet-jetty</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.kumuluz.ee</groupId>
-            <artifactId>kumuluzee-json-b-yasson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.kumuluz.ee</groupId>
-            <artifactId>kumuluzee-json-p-jsonp</artifactId>
-        </dependency>
 
+        <dependency>
+            <artifactId>kumuluzee-config-etcd</artifactId>
+            <groupId>com.kumuluz.ee.config</groupId>
+        </dependency>
         <dependency>
             <groupId>com.kumuluz.ee.health</groupId>
             <artifactId>kumuluzee-health</artifactId>
@@ -47,8 +38,17 @@
             <artifactId>kumuluzee-metrics-core</artifactId>
         </dependency>
         <dependency>
-            <artifactId>kumuluzee-logs-log4j2</artifactId>
-            <groupId>com.kumuluz.ee.logs</groupId>
+            <groupId>com.kumuluz.ee.graphql</groupId>
+            <artifactId>kumuluzee-graphql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.graphql</groupId>
+            <artifactId>kumuluzee-graphql-ui</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>si.fri.rso.samples</groupId>
+            <artifactId>songs-services</artifactId>
         </dependency>
     </dependencies>
 
@@ -62,7 +62,7 @@
                     <execution>
                         <id>package</id>
                         <goals>
-                            <goal>copy-dependencies</goal>
+                            <goal>repackage</goal>
                         </goals>
                     </execution>
                 </executions>
