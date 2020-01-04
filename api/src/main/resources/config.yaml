@@ -13,7 +13,7 @@ kumuluzee:
       allow-origin: "*"
   datasources:
     - jndi-name: jdbc/ImageMetadataDS
-      connection-url: jdbc:postgresql://localhost:5435/postgres
+      connection-url: jdbc:postgresql://postgres.cxpwezylclm2.us-east-1.rds.amazonaws.com:5432/postgres
       username: postgres
       password: postgres
       max-pool-size: 20
