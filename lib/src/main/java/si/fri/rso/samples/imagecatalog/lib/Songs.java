@@ -14,11 +14,11 @@ public class Songs {
     private String uri;
     private Integer numberOfComments;
 
-    public String getAuthorId() {
+    public Integer getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(String authorId) {
+    public void setAuthorId(Integer authorId) {
         this.authorId = authorId;
     }
 
