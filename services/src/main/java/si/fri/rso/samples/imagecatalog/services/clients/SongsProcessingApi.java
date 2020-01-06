@@ -11,7 +11,7 @@ import java.util.concurrent.CompletionStage;
 @Path("process")
 @RegisterRestClient(configKey="image-processing-api")
 @Dependent
-public interface SongProcessingApi {
+public interface SongsProcessingApi {
 
     @POST
     CompletionStage<String> processImageAsynch(ImageProcessRequest imageProcessRequest);

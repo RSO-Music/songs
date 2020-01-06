@@ -53,11 +53,11 @@ kumuluzee:
 #        auto-offset-reset: earliest
 #        session-timeout-ms: 30000
 #        sasl-jaas-config:
-#  rest-client:
-#    registrations:
-#      - class: image-processing-api
-#        url: http://localhost:8082/v1
-#        read-timeout: 5000
+  rest-client:
+    registrations:
+      - class: image-processing-api
+        url: http://localhost:8080/v1
+        read-timeout: 5000
 #configuration-properties:
 #  comments-service:
 #    enabled: true

@@ -6,7 +6,7 @@ import si.fri.rso.samples.imagecatalog.api.v1.dtos.UploadImageResponse;
 import si.fri.rso.samples.imagecatalog.lib.Songs;
 import si.fri.rso.samples.imagecatalog.services.beans.SongsBean;
 import si.fri.rso.samples.imagecatalog.services.clients.AmazonRekognitionClient;
-import si.fri.rso.samples.imagecatalog.services.clients.SongProcessingApi;
+import si.fri.rso.samples.imagecatalog.services.clients.SongsProcessingApi;
 import si.fri.rso.samples.imagecatalog.services.dtos.ImageProcessRequest;
 import si.fri.rso.samples.imagecatalog.services.streaming.EventProducerImpl;
 
@@ -44,7 +44,7 @@ public class SongsResource {
 
     @Inject
     @RestClient
-    private SongProcessingApi songProcessingApi;
+    private SongsProcessingApi songsProcessingApi;
 
     @Context
     protected UriInfo uriInfo;
@@ -155,7 +155,7 @@ public class SongsResource {
 
         // start image processing over async API
         CompletionStage<String> stringCompletionStage =
-                songProcessingApi.processImageAsynch(new ImageProcessRequest(imageId, imageLocation));
+                songsProcessingApi.processImageAsynch(new ImageProcessRequest(imageId, imageLocation));
 
         stringCompletionStage.whenComplete((s, throwable) -> System.out.println(s));
         stringCompletionStage.exceptionally(throwable -> {
