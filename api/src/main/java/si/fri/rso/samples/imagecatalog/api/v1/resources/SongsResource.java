@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
-@Path("/images")
+@Path("/songs")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class SongsResource {
