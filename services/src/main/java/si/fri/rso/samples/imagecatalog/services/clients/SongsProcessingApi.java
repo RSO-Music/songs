@@ -1,7 +1,7 @@
 package si.fri.rso.samples.imagecatalog.services.clients;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import si.fri.rso.samples.imagecatalog.services.dtos.ImageProcessRequest;
+import si.fri.rso.samples.imagecatalog.services.dtos.SongProcessRequest;
 
 import javax.enterprise.context.Dependent;
 import javax.ws.rs.POST;
@@ -14,6 +14,6 @@ import java.util.concurrent.CompletionStage;
 public interface SongsProcessingApi {
 
     @POST
-    CompletionStage<String> processImageAsynch(ImageProcessRequest imageProcessRequest);
+    CompletionStage<String> processSongAsynch(SongProcessRequest songProcessRequest);
 
 }

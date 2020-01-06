@@ -1,6 +1,6 @@
 package si.fri.rso.samples.imagecatalog.api.v1.dtos;
 
-public class UploadImageResponse {
+public class UploadSongResponse {
 
     private Integer numberOfFaces;
     private String message;

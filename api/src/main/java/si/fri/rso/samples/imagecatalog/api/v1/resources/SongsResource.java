@@ -2,12 +2,12 @@ package si.fri.rso.samples.imagecatalog.api.v1.resources;
 
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
-import si.fri.rso.samples.imagecatalog.api.v1.dtos.UploadImageResponse;
+import si.fri.rso.samples.imagecatalog.api.v1.dtos.UploadSongResponse;
 import si.fri.rso.samples.imagecatalog.lib.Songs;
 import si.fri.rso.samples.imagecatalog.services.beans.SongsBean;
 import si.fri.rso.samples.imagecatalog.services.clients.AmazonRekognitionClient;
 import si.fri.rso.samples.imagecatalog.services.clients.SongsProcessingApi;
-import si.fri.rso.samples.imagecatalog.services.dtos.ImageProcessRequest;
+import si.fri.rso.samples.imagecatalog.services.dtos.SongProcessRequest;
 import si.fri.rso.samples.imagecatalog.services.streaming.EventProducerImpl;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -115,10 +115,10 @@ public class SongsResource {
     @POST
     @Path("/upload")
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
-    public Response uploadImage(InputStream uploadedInputStream) {
+    public Response uploadSong(InputStream uploadedInputStream) {
 
-        String imageId = UUID.randomUUID().toString();
-        String imageLocation = UUID.randomUUID().toString();
+        String songId = UUID.randomUUID().toString();
+        String songLocation = UUID.randomUUID().toString();
 
         byte[] bytes = new byte[0];
         try (uploadedInputStream) {
@@ -127,35 +127,35 @@ public class SongsResource {
             e.printStackTrace();
         }
 
-        UploadImageResponse uploadImageResponse = new UploadImageResponse();
+        UploadSongResponse uploadSongResponse = new UploadSongResponse();
 
         Integer numberOfFaces = amazonRekognitionClient.countFaces(bytes);
-        uploadImageResponse.setNumberOfFaces(numberOfFaces);
+        uploadSongResponse.setNumberOfFaces(numberOfFaces);
 
         if (numberOfFaces != 1) {
-            uploadImageResponse.setMessage("Image must contain one face.");
-            return Response.status(Response.Status.BAD_REQUEST).entity(uploadImageResponse).build();
+            uploadSongResponse.setMessage("Image must contain one face.");
+            return Response.status(Response.Status.BAD_REQUEST).entity(uploadSongResponse).build();
 
         }
 
         List<String> detectedCelebrities = amazonRekognitionClient.checkForCelebrities(bytes);
 
         if (!detectedCelebrities.isEmpty()) {
-            uploadImageResponse.setMessage("Image must not contain celebrities. Detected celebrities: "
+            uploadSongResponse.setMessage("Image must not contain celebrities. Detected celebrities: "
                     + detectedCelebrities.stream().collect(Collectors.joining(", ")));
-            return Response.status(Response.Status.BAD_REQUEST).entity(uploadImageResponse).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(uploadSongResponse).build();
         }
 
-        uploadImageResponse.setMessage("Success.");
+        uploadSongResponse.setMessage("Success.");
 
         // Upload image to storage
 
         // Generate event for image processing
-//        eventProducer.produceMessage(imageId, imageLocation);
+//        eventProducer.produceMessage(songId, songLocation);
 
         // start image processing over async API
         CompletionStage<String> stringCompletionStage =
-                songsProcessingApi.processImageAsynch(new ImageProcessRequest(imageId, imageLocation));
+                songsProcessingApi.processSongAsynch(new SongProcessRequest(songId, songLocation));
 
         stringCompletionStage.whenComplete((s, throwable) -> System.out.println(s));
         stringCompletionStage.exceptionally(throwable -> {
@@ -163,7 +163,7 @@ public class SongsResource {
             return throwable.getMessage();
         });
 
-        return Response.status(Response.Status.CREATED).entity(uploadImageResponse).build();
+        return Response.status(Response.Status.CREATED).entity(uploadSongResponse).build();
     }
 
 }

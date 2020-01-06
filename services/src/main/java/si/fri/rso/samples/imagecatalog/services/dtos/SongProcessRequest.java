@@ -1,11 +1,11 @@
 package si.fri.rso.samples.imagecatalog.services.dtos;
 
-public class ImageProcessRequest {
+public class SongProcessRequest {
 
-    public ImageProcessRequest() {
+    public SongProcessRequest() {
     }
 
-    public ImageProcessRequest(String imageId, String imageLocation) {
+    public SongProcessRequest(String imageId, String imageLocation) {
         this.imageId = imageId;
         this.imageLocation = imageLocation;
     }
