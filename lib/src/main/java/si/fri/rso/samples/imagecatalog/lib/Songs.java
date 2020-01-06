@@ -6,7 +6,7 @@ public class Songs {
 
     private Integer songId;
     private Instant uploadedAt;
-    private String authorId;
+    private Integer authorId;
     private String songName;
     private Integer songLength;
     private Integer albumId;
