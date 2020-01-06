@@ -17,7 +17,7 @@ public class SongsEntity {
     private Integer id;
 
     @Column(name = "AuthorId")
-    private String AuthorId;
+    private Integer AuthorId;
 
     @Column(name = "SongName")
     private String SongName;
@@ -42,11 +42,11 @@ public class SongsEntity {
         this.id = id;
     }
 
-    public String getAuthorId() {
+    public Integer getAuthorId() {
         return AuthorId;
     }
 
-    public void setAuthorId(String AuthorId) {
+    public void setAuthorId(Integer AuthorId) {
         this.AuthorId = AuthorId;
     }
 
