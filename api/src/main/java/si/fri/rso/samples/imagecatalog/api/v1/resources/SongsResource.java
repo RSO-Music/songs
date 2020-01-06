@@ -129,22 +129,22 @@ public class SongsResource {
 
         UploadSongResponse uploadSongResponse = new UploadSongResponse();
 
-        Integer numberOfFaces = amazonRekognitionClient.countFaces(bytes);
-        uploadSongResponse.setNumberOfFaces(numberOfFaces);
-
-        if (numberOfFaces != 1) {
-            uploadSongResponse.setMessage("Image must contain one face.");
-            return Response.status(Response.Status.BAD_REQUEST).entity(uploadSongResponse).build();
-
-        }
-
-        List<String> detectedCelebrities = amazonRekognitionClient.checkForCelebrities(bytes);
-
-        if (!detectedCelebrities.isEmpty()) {
-            uploadSongResponse.setMessage("Image must not contain celebrities. Detected celebrities: "
-                    + detectedCelebrities.stream().collect(Collectors.joining(", ")));
-            return Response.status(Response.Status.BAD_REQUEST).entity(uploadSongResponse).build();
-        }
+//        Integer numberOfFaces = amazonRekognitionClient.countFaces(bytes);
+//        uploadSongResponse.setNumberOfFaces(numberOfFaces);
+//
+//        if (numberOfFaces != 1) {
+//            uploadSongResponse.setMessage("Image must contain one face.");
+//            return Response.status(Response.Status.BAD_REQUEST).entity(uploadSongResponse).build();
+//
+//        }
+//
+//        List<String> detectedCelebrities = amazonRekognitionClient.checkForCelebrities(bytes);
+//
+//        if (!detectedCelebrities.isEmpty()) {
+//            uploadSongResponse.setMessage("Image must not contain celebrities. Detected celebrities: "
+//                    + detectedCelebrities.stream().collect(Collectors.joining(", ")));
+//            return Response.status(Response.Status.BAD_REQUEST).entity(uploadSongResponse).build();
+//        }
 
         uploadSongResponse.setMessage("Success.");
 
