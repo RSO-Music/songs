@@ -114,6 +114,7 @@ public class SongsResource {
         Songs songs = gson.fromJson(body, Songs.class);
 
         System.out.println(body);
+        System.out.println(songs);
 
 //        if (songs.getFileLabels() != null) {
 //            System.out.println(Arrays.toString(newFileMetadata.getFileLabels().toArray()));
