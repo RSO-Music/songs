@@ -63,5 +63,10 @@ kumuluzee:
 #    enabled: true
 app-properties:
   amazon-rekognition:
-    access-key:
+    access-key: "AKIAITAY37YYXN6VUSDA"
     secret-key:
+      secure: "yG1+vkDTFvz/B50QcKcUNZC1B9JgN5RE1WQ9Q9rNZYS3xkFljqpe97OcR2nVDzkpmTie/U9//UaKZDfKBu9QTwndrYPh9IPPb2TTTwLuQrh8KnbVsqNhb/v6EgQsQ06hNwbq2i9N4jE5uCs1sX
+                oEn/P/qdtouizO1oQfWHqeuoEw5f3nalx0ZwDPkanhiLMSqcjyzVxIDPY6454pOa+Uzx+yVn9G8I/D6A/KF547bT6IxFCEsJDBslE05jz8UIPoWgt3dRIqRg3Ok6APkEO/4MZ8u2iq8eZUt+/JW06pK+yjG1X
+                U1payeKca3YmpQQQ+Sv563pw/wM9b/VDfzF1ZGeACmYBvJMmP2M60SRYlodvlM0QWJHPISYT9VPKyrwSYMUOP1Rxr6Ql+pCP3cTWUMh8/rbcVX8af40e3uHmePgMnIFFYT2JmfAJ5jtoGdcpSyviJ4QKMq51Y
+                Rx6RCa7yOpluWoF3lvKhIUPvDOXW+En1CcRHCL5lHTUX8KlsdgCKBZN1W2cfB+7Mus2jPzGjM69DTymF6+M0SCVdmfFLblLFhqIW/moJ+ZztUrTs5wcEGtIQm71py84O/Bui8rjBj1APdvpajOC45Cxj7kvW7
+                ltqwsXH74LWI1bie9C042HWP8V7rktWy0/d2Wsa1kYDPJeI8VDLS+wOQ0Sfmr52zxk="
