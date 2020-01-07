@@ -31,8 +31,8 @@ public class AmazonS3Client {
         AWSCredentials credentials;
         try {
             credentials = new BasicAWSCredentials(
-                    "$AWS_ACCESS_KEY_ID",
-                    "$AWS_SECRET_ACCESS_KEY");
+                    System.getenv("AWS_ACCESS_KEY_ID"),
+                    System.getenv("AWS_SECRET_ACCESS_KEY"));
         } catch (Exception e) {
             throw new AmazonClientException("Cannot initialise the credentials.", e);
         }
@@ -48,7 +48,7 @@ public class AmazonS3Client {
         //Upload text string
         Regions clientRegion = Regions.US_EAST_1;
         String bucketName = "rso-music";
-        String stringObjKeyName = "test string";
+        String stringObjKeyName = "test_string";
         String fileObjKeyName = "test file";
         String fileName = "testdata/images/gates.jpg";
         try {
