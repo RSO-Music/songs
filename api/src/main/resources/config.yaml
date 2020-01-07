@@ -61,7 +61,7 @@ kumuluzee:
 #configuration-properties:
 #  comments-service:
 #    enabled: true
-#app-properties:
-#  amazon-rekognition:
-#    access-key:
-#    secret-key:
+app-properties:
+  amazon-rekognition:
+    access-key:
+    secret-key:

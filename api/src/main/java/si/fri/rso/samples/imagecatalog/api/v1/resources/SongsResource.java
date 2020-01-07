@@ -1,5 +1,6 @@
 package si.fri.rso.samples.imagecatalog.api.v1.resources;
 
+//import com.amazonaws.services.s3.AmazonS3Client;
 import com.google.gson.Gson;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -7,6 +8,7 @@ import si.fri.rso.samples.imagecatalog.api.v1.dtos.UploadSongResponse;
 import si.fri.rso.samples.imagecatalog.lib.Songs;
 import si.fri.rso.samples.imagecatalog.services.beans.SongsBean;
 import si.fri.rso.samples.imagecatalog.services.clients.AmazonRekognitionClient;
+import si.fri.rso.samples.imagecatalog.services.clients.AmazonS3Client;
 import si.fri.rso.samples.imagecatalog.services.clients.SongsProcessingApi;
 import si.fri.rso.samples.imagecatalog.services.dtos.SongProcessRequest;
 import si.fri.rso.samples.imagecatalog.services.streaming.EventProducerImpl;
@@ -39,6 +41,9 @@ public class SongsResource {
 
     @Inject
     private AmazonRekognitionClient amazonRekognitionClient;
+
+    @Inject
+    private AmazonS3Client amazonS3Client;
 
     @Inject
     private EventProducerImpl eventProducer;
@@ -187,7 +192,9 @@ public class SongsResource {
 
         UploadSongResponse uploadSongResponse = new UploadSongResponse();
 
-//        Integer numberOfFaces = amazonRekognitionClient.countFaces(bytes);
+        String uploadedFileUrl = amazonS3Client.uploadFile(bytes);
+
+        Integer numberOfFaces = amazonRekognitionClient.countFaces(bytes);
 //        uploadSongResponse.setNumberOfFaces(numberOfFaces);
 //
 //        if (numberOfFaces != 1) {pos
@@ -204,7 +211,7 @@ public class SongsResource {
 //            return Response.status(Response.Status.BAD_REQUEST).entity(uploadSongResponse).build();
 //        }
 
-        uploadSongResponse.setMessage("Success." + " " + songId + " " + songLocation);
+        uploadSongResponse.setMessage("Success." + " " + songId + " " + songLocation + " " + uploadedFileUrl);
 
         // Upload image to storage
 
