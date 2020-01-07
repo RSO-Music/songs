@@ -27,12 +27,28 @@ import java.util.UUID;
 import java.util.concurrent.CompletionStage;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Formatter;
 
 @ApplicationScoped
 @Path("/songs")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class SongsResource {
+
+    public static String SHAsum(byte[] convertme) throws NoSuchAlgorithmException{
+        MessageDigest md = MessageDigest.getInstance("SHA-1");
+        return byteArray2Hex(md.digest(convertme));
+    }
+
+    private static String byteArray2Hex(final byte[] hash) {
+        Formatter formatter = new Formatter();
+        for (byte b : hash) {
+            formatter.format("%02x", b);
+        }
+        return formatter.toString();
+    }
 
     private Logger log = Logger.getLogger(SongsResource.class.getName());
 
@@ -190,6 +206,16 @@ public class SongsResource {
             e.printStackTrace();
         }
 
+        String fileSha = "";
+
+        try {
+            fileSha = SHAsum(bytes);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        songId = fileSha;
+
         UploadSongResponse uploadSongResponse = new UploadSongResponse();
 
         String uploadedFileUrl = amazonS3Client.uploadFile(bytes);
@@ -211,7 +237,7 @@ public class SongsResource {
 //            return Response.status(Response.Status.BAD_REQUEST).entity(uploadSongResponse).build();
 //        }
 
-        uploadSongResponse.setMessage("Success." + " " + songId + " " + songLocation + " " + uploadedFileUrl);
+        uploadSongResponse.setMessage("Success." + "songId " + songId + "songLocation " + songLocation + "uploadedFileUrl " + uploadedFileUrl);
 
         // Upload image to storage
 
