@@ -132,7 +132,7 @@ public class SongsResource {
 //        Integer numberOfFaces = amazonRekognitionClient.countFaces(bytes);
 //        uploadSongResponse.setNumberOfFaces(numberOfFaces);
 //
-//        if (numberOfFaces != 1) {
+//        if (numberOfFaces != 1) {pos
 //            uploadSongResponse.setMessage("Image must contain one face.");
 //            return Response.status(Response.Status.BAD_REQUEST).entity(uploadSongResponse).build();
 //
@@ -146,7 +146,7 @@ public class SongsResource {
 //            return Response.status(Response.Status.BAD_REQUEST).entity(uploadSongResponse).build();
 //        }
 
-        uploadSongResponse.setMessage("Success.");
+        uploadSongResponse.setMessage("Success." + songId + songLocation);
 
         // Upload image to storage
 

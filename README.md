@@ -7,4 +7,4 @@ docker run -d --name pg-image-metadata -e POSTGRES_USER=dbuser -e POSTGRES_PASSW
 ```
 
 
-kubectl create secret generic pg-pass --from-literal=KUMULUZEE_DATASOURCES0_PASSWORD=postgres
+kubectl create secret generic pg-pass --from-literal=KUMULUZEE_DATASOURCES0_PASSWORD=postgres1

@@ -6,7 +6,7 @@ services:
 #      - 5432:5432
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: postgres1
       POSTGRES_DB: songs
   image-catalog:
     image: 3978hge3gu/songs:1.0.0-SNAPSHOT-7.1
