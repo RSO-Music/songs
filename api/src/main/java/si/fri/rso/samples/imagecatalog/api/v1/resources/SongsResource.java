@@ -1,5 +1,6 @@
 package si.fri.rso.samples.imagecatalog.api.v1.resources;
 
+import com.google.gson.Gson;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import si.fri.rso.samples.imagecatalog.api.v1.dtos.UploadSongResponse;
@@ -53,9 +54,9 @@ public class SongsResource {
     @Timed
     public Response getImageMetadata() {
 
-        List<Songs> imageMetadata = songsBean.getSongsFilter(uriInfo);
+        List<Songs> songsMetadata = songsBean.getSongsFilter(uriInfo);
 
-        return Response.status(Response.Status.OK).entity(imageMetadata).build();
+        return Response.status(Response.Status.OK).entity(songsMetadata).build();
     }
 
     @GET
@@ -71,8 +72,64 @@ public class SongsResource {
         return Response.status(Response.Status.OK).entity(songs).build();
     }
 
+//    @POST
+//    public Response uploadFileMetadata(String body) {
+//        Gson gson = new Gson();
+//        Songs songs = gson.fromJson(body, NewFileMetadataDTO.class);
+//
+//        if (newFileMetadata.getFileLabels() != null) {
+//            System.out.println(Arrays.toString(newFileMetadata.getFileLabels().toArray()));
+//        }
+//
+//        if (newFileMetadata.getChannelId() == null || newFileMetadata.getFileName() == null ||
+//                newFileMetadata.getFilePath() == null || newFileMetadata.getFileType() == null ||newFileMetadata.getUserId() == null) {
+//            return Response.status(400).entity(this.responseError(400, "channelId, fileName, filePath, fileType or userId is missing")).build();
+//        }
+//
+//        FileDTO newFile = catalogFileBean.createFileMetadata(newFileMetadata);
+//        if (newFile == null) {
+//            return Response.status(500).entity(this.responseError(500, "error when writing file metadata to DB")).build();
+//        }
+//
+//        return Response.status(200).entity(this.responseOk("", newFile)).build();
+//    }
+
+
+//    @POST
+//    public Response createSongMetadata(Songs songs) {
+//
+//        if ((songs.getAuthorId() == null || songs.getSongName() == null || songs.getUri() == null)) {
+//            return Response.status(Response.Status.BAD_REQUEST).build();
+//        } else {
+//            songs = songsBean.createSongs(songs);
+//        }
+//
+//        return Response.status(Response.Status.CONFLICT).entity(songs).build();
+//
+//    }
+
     @POST
-    public Response createImageMetadata(Songs songs) {
+    public Response createSongMetadata(String body) {
+        Gson gson = new Gson();
+        Songs songs = gson.fromJson(body, Songs.class);
+
+        System.out.println(body);
+
+//        if (songs.getFileLabels() != null) {
+//            System.out.println(Arrays.toString(newFileMetadata.getFileLabels().toArray()));
+//        }
+//
+//        if (songs.getChannelId() == null || songs.getFileName() == null ||
+//                songs.getFilePath() == null || songs.getFileType() == null ||songs.getUserId() == null) {
+//            return Response.status(400).entity(this.responseError(400, "channelId, fileName, filePath, fileType or userId is missing")).build();
+//        }
+
+//        FileDTO newFile = catalogFileBean.createFileMetadata(newFileMetadata);
+//        if (newFile == null) {
+//            return Response.status(500).entity(this.responseError(500, "error when writing file metadata to DB")).build();
+//        }
+//
+//        return Response.status(200).entity(this.responseOk("", newFile)).build();
 
         if ((songs.getAuthorId() == null || songs.getSongName() == null || songs.getUri() == null)) {
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -80,7 +137,7 @@ public class SongsResource {
             songs = songsBean.createSongs(songs);
         }
 
-        return Response.status(Response.Status.CONFLICT).entity(songs).build();
+        return Response.status(Response.Status.CONFLICT).entity(songs + " " + body).build();
 
     }
 
@@ -146,7 +203,7 @@ public class SongsResource {
 //            return Response.status(Response.Status.BAD_REQUEST).entity(uploadSongResponse).build();
 //        }
 
-        uploadSongResponse.setMessage("Success." + songId + songLocation);
+        uploadSongResponse.setMessage("Success." + " " + songId + " " + songLocation);
 
         // Upload image to storage
 
