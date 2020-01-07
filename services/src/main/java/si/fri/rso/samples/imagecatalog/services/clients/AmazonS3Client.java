@@ -31,8 +31,8 @@ public class AmazonS3Client {
         AWSCredentials credentials;
         try {
             credentials = new BasicAWSCredentials(
-                    "AWS_ACCESS_KEY_ID",
-                    "AWS_SECRET_ACCESS_KEY");
+                    appProperties.getAmazonRekognitionAccessKey(),
+                    appProperties.getAmazonRekognitionSecretKey());
         } catch (Exception e) {
             throw new AmazonClientException("Cannot initialise the credentials.", e);
         }
