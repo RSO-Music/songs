@@ -16,10 +16,7 @@ import si.fri.rso.samples.imagecatalog.services.config.AppProperties;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.*;
 
 @ApplicationScoped
 public class AmazonS3Client {
@@ -91,11 +88,20 @@ public class AmazonS3Client {
         try {
 //            s3Client.putObject(bucketName, stringObjKeyName, "Uploaded String Object");
 
-            PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, new File(fileName));
+//            PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, new File(fileName));
+
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentType("plain/text");
             metadata.addUserMetadata("x-amz-meta-title", "someTitle");
-            request.setMetadata(metadata);
+
+            ByteArrayInputStream bis = new ByteArrayInputStream(songBytes);
+            
+            PutObjectRequest request = new PutObjectRequest (bucketName, fileObjKeyName, bis, metadata);
+
+//            ObjectMetadata metadata = new ObjectMetadata();
+//            metadata.setContentType("plain/text");
+//            metadata.addUserMetadata("x-amz-meta-title", "someTitle");
+//            request.setMetadata(metadata);
             s3Client.putObject(request);
 
         } catch (AmazonServiceException e) {
