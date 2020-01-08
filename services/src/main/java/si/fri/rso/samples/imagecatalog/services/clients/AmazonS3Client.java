@@ -89,12 +89,12 @@ public class AmazonS3Client {
 //            PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, new File(fileName));
 
             ObjectMetadata metadata = new ObjectMetadata();
-            metadata.setContentType("plain/text");
+            metadata.setContentType("audio/mpeg");
             metadata.addUserMetadata("x-amz-meta-title", "someTitle");
 
             ByteArrayInputStream bis = new ByteArrayInputStream(songBytes);
 
-            PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName + ".jpg", bis, metadata);
+            PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, bis, metadata);
 
 //            ObjectMetadata metadata = new ObjectMetadata();
 //            metadata.setContentType("plain/text");
@@ -122,7 +122,7 @@ public class AmazonS3Client {
             return sw.toString();
         }
 
-        return "https://rso-music.s3.amazonaws.com/" + stringObjKeyName;
+        return "https://rso-music.s3.amazonaws.com/" + fileObjKeyName;
     }
 
     /*
