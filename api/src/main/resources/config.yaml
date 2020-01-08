@@ -19,17 +19,17 @@ kumuluzee:
       max-pool-size: 20
   config:
     etcd:
-      hosts: 10.4.27.56:2379
+      hosts: http://10.4.27.56:2379
   discovery:
     etcd:
-      hosts: 10.4.27.56:2379
+      hosts: http://10.4.27.56:2379
   health:
     checks:
       data-source-health-check:
         type: liveness
         jndi-name: jdbc/ImageMetadataDS
       etcd-health-check:
-        connection-url: 10.4.27.56:2379:2379/health
+        connection-url: http://10.4.27.56:2379:2379/health
   metrics:
     web-instrumentation:
       - name: songs-endpoint
