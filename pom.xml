@@ -122,7 +122,11 @@
                 <artifactId>kumuluzee-graphql-ui</artifactId>
                 <version>${kumuluzee-graphql.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.kumuluz.ee.cors</groupId>
+                <artifactId>kumuluzee-cors</artifactId>
+                <version>${kumuluzee-cors.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.amazonaws</groupId>
                 <artifactId>aws-java-sdk-rekognition</artifactId>
