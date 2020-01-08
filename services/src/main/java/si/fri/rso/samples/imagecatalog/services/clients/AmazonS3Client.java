@@ -81,7 +81,7 @@ public class AmazonS3Client {
         Regions clientRegion = Regions.US_EAST_1;
         String bucketName = "rso-music";
         String stringObjKeyName = "test_string";
-        fileObjKeyName = "test_file";
+//        fileObjKeyName = "test_file";
         String fileName = "gates.jpg";
         try {
 //            s3Client.putObject(bucketName, stringObjKeyName, "Uploaded String Object");
@@ -94,7 +94,7 @@ public class AmazonS3Client {
 
             ByteArrayInputStream bis = new ByteArrayInputStream(songBytes);
 
-            PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, bis, metadata);
+            PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName + ".jpg", bis, metadata);
 
 //            ObjectMetadata metadata = new ObjectMetadata();
 //            metadata.setContentType("plain/text");
