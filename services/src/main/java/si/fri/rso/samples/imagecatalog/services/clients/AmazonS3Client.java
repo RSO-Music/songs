@@ -21,34 +21,32 @@ import java.io.*;
 @ApplicationScoped
 public class AmazonS3Client {
 
-    public String decrypt(String message){
+    public String decrypt(String message) {
         String decryptedMessage = "";
         int key;
         char ch;
         key = 1;
 
-        for(int i = 0; i < message.length(); ++i){
+        for (int i = 0; i < message.length(); ++i) {
             ch = message.charAt(i);
 
-            if(ch >= 'a' && ch <= 'z'){
-                ch = (char)(ch - key);
+            if (ch >= 'a' && ch <= 'z') {
+                ch = (char) (ch - key);
 
-                if(ch < 'a'){
-                    ch = (char)(ch + 'z' - 'a' + 1);
+                if (ch < 'a') {
+                    ch = (char) (ch + 'z' - 'a' + 1);
                 }
 
                 decryptedMessage += ch;
-            }
-            else if(ch >= 'A' && ch <= 'Z'){
-                ch = (char)(ch - key);
+            } else if (ch >= 'A' && ch <= 'Z') {
+                ch = (char) (ch - key);
 
-                if(ch < 'A'){
-                    ch = (char)(ch + 'Z' - 'A' + 1);
+                if (ch < 'A') {
+                    ch = (char) (ch + 'Z' - 'A' + 1);
                 }
 
                 decryptedMessage += ch;
-            }
-            else {
+            } else {
                 decryptedMessage += ch;
             }
         }
@@ -78,13 +76,13 @@ public class AmazonS3Client {
                 .build();
     }
 
-    public String uploadFile(byte[] songBytes, String fileName) {
+    public String uploadFile(byte[] songBytes, String fileObjKeyName) {
         //Upload text string
         Regions clientRegion = Regions.US_EAST_1;
         String bucketName = "rso-music";
         String stringObjKeyName = "test_string";
-        String fileObjKeyName = "test_file";
-        fileName = "gates.jpg";
+        fileObjKeyName = "test_file";
+        String fileName = "gates.jpg";
         try {
 //            s3Client.putObject(bucketName, stringObjKeyName, "Uploaded String Object");
 
@@ -95,8 +93,8 @@ public class AmazonS3Client {
             metadata.addUserMetadata("x-amz-meta-title", "someTitle");
 
             ByteArrayInputStream bis = new ByteArrayInputStream(songBytes);
-            
-            PutObjectRequest request = new PutObjectRequest (bucketName, fileObjKeyName, bis, metadata);
+
+            PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, bis, metadata);
 
 //            ObjectMetadata metadata = new ObjectMetadata();
 //            metadata.setContentType("plain/text");
