@@ -24,6 +24,41 @@ import java.io.StringWriter;
 @ApplicationScoped
 public class AmazonS3Client {
 
+    public String decrypt(String message){
+        String decryptedMessage = "";
+        int key;
+        char ch;
+        key = 1;
+
+        for(int i = 0; i < message.length(); ++i){
+            ch = message.charAt(i);
+
+            if(ch >= 'a' && ch <= 'z'){
+                ch = (char)(ch - key);
+
+                if(ch < 'a'){
+                    ch = (char)(ch + 'z' - 'a' + 1);
+                }
+
+                decryptedMessage += ch;
+            }
+            else if(ch >= 'A' && ch <= 'Z'){
+                ch = (char)(ch - key);
+
+                if(ch < 'A'){
+                    ch = (char)(ch + 'Z' - 'A' + 1);
+                }
+
+                decryptedMessage += ch;
+            }
+            else {
+                decryptedMessage += ch;
+            }
+        }
+
+        return decryptedMessage;
+    }
+
     @Inject
     private AppProperties appProperties;
     private AmazonS3 s3Client;
@@ -34,7 +69,7 @@ public class AmazonS3Client {
         try {
             credentials = new BasicAWSCredentials(
                     appProperties.getAmazonRekognitionAccessKey(),
-                    appProperties.getAmazonRekognitionSecretKey());
+                    decrypt(appProperties.getAmazonRekognitionSecretKey()));
         } catch (Exception e) {
             throw new AmazonClientException("Cannot initialise the credentials.", e);
         }
