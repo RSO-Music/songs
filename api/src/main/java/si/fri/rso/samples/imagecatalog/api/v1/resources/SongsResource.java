@@ -153,7 +153,7 @@ public class SongsResource {
 //
 //        return Response.status(200).entity(this.responseOk("", newFile)).build();
 
-        if ((songs.getAuthorId() == null || songs.getSongName() == null || songs.getUri() == null)) {
+        if ((songs.getAuthorId() == null || songs.getSongName() == null || songs.getUri() == null || songs.getAlbumId() == null || songs.getSongLength() == null)) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         } else {
             songs = songsBean.createSongs(songs);

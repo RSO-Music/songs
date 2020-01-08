@@ -17,16 +17,16 @@ public class SongsEntity {
     private Integer id;
 
     @Column(name = "AuthorId")
-    private Integer AuthorId;
+    private String AuthorId;
 
     @Column(name = "SongName")
     private String SongName;
 
     @Column(name = "SongLength")
-    private Integer SongLength;
+    private String SongLength;
 
     @Column(name = "AlbumId")
-    private Integer AlbumId;
+    private String AlbumId;
 
     @Column(name = "UploadedAt")
     private Instant UploadedAt;
@@ -42,11 +42,11 @@ public class SongsEntity {
         this.id = id;
     }
 
-    public Integer getAuthorId() {
+    public String getAuthorId() {
         return AuthorId;
     }
 
-    public void setAuthorId(Integer AuthorId) {
+    public void setAuthorId(String AuthorId) {
         this.AuthorId = AuthorId;
     }
 
@@ -58,19 +58,19 @@ public class SongsEntity {
         this.SongName = SongName;
     }
 
-    public Integer getSongLength() {
+    public String getSongLength() {
         return SongLength;
     }
 
-    public void setSongLength(Integer SongLength) {
+    public void setSongLength(String SongLength) {
         this.SongLength = SongLength;
     }
 
-    public Integer getAlbumId() {
+    public String getAlbumId() {
         return AlbumId;
     }
 
-    public void setAlbumId(Integer AlbumId) {
+    public void setAlbumId(String AlbumId) {
         this.AlbumId = AlbumId;
     }
 

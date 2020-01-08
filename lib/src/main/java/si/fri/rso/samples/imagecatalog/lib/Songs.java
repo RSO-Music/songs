@@ -6,19 +6,19 @@ public class Songs {
 
     private Integer songId;
     private Instant uploadedAt;
-    private Integer authorId;
+    private String authorId;
     private String songName;
-    private Integer songLength;
-    private Integer albumId;
+    private String songLength;
+    private String albumId;
 
     private String uri;
     private Integer numberOfComments;
 
-    public Integer getAuthorId() {
+    public String getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(Integer authorId) {
+    public void setAuthorId(String authorId) {
         this.authorId = authorId;
     }
 
@@ -30,19 +30,19 @@ public class Songs {
         this.songName = songName;
     }
 
-    public Integer getSongLength() {
+    public String getSongLength() {
         return songLength;
     }
 
-    public void setSongLength(Integer songLength) {
+    public void setSongLength(String songLength) {
         this.songLength = songLength;
     }
 
-    public Integer getAlbumId() {
+    public String getAlbumId() {
         return albumId;
     }
 
-    public void setAlbumId(Integer albumId) {
+    public void setAlbumId(String albumId) {
         this.albumId = albumId;
     }
 
