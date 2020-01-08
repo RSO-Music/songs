@@ -29,7 +29,7 @@ spec:
             - name: KUMULUZEE_DATASOURCES0_USERNAME
               value: postgres
             - name: KUMULUZEE_DATASOURCES0_PASSWORD
-              value: postgres1
+              value: postgres12
             - name: KUMULUZEE_HEALTH_CHECKS_ETCDHEALTHCHECK_CONNECTIONURL
               value: http://etcd:2379/health
             - name: KUMULUZEE_AWS_SECRET
