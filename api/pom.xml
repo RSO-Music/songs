@@ -50,6 +50,11 @@
             <groupId>si.fri.rso.samples</groupId>
             <artifactId>songs-services</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.cors</groupId>
+            <artifactId>kumuluzee-cors</artifactId>
+            <version>${kumuluzee-cors.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
