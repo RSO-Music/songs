@@ -65,7 +65,7 @@ app-properties:
   amazon-rekognition:
     access-key: "AKIAIGL4HQW5HDWGE3RA"
 #    secret-key: KUMULUZEE_AWS_SECRET
-    - name: secret-key
+    secret-key:
         valueFrom:
           secretKeyRef:
             name: pg-pass
