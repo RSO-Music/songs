@@ -81,15 +81,23 @@ public class AmazonS3Client {
                 .build();
     }
 
-    public String uploadFile(byte[] songBytes) {
+    public String uploadFile(byte[] songBytes, String fileName) {
         //Upload text string
         Regions clientRegion = Regions.US_EAST_1;
         String bucketName = "rso-music";
         String stringObjKeyName = "test_string";
-        String fileObjKeyName = "test file";
-        String fileName = "testdata/images/gates.jpg";
+        String fileObjKeyName = "test_file";
+        fileName = "gates.jpg";
         try {
-            s3Client.putObject(bucketName, stringObjKeyName, "Uploaded String Object");
+//            s3Client.putObject(bucketName, stringObjKeyName, "Uploaded String Object");
+
+            PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, new File(fileName));
+            ObjectMetadata metadata = new ObjectMetadata();
+            metadata.setContentType("plain/text");
+            metadata.addUserMetadata("x-amz-meta-title", "someTitle");
+            request.setMetadata(metadata);
+            s3Client.putObject(request);
+
         } catch (AmazonServiceException e) {
             // The call was transmitted successfully, but Amazon S3 couldn't process
             // it, so it returned an error response.

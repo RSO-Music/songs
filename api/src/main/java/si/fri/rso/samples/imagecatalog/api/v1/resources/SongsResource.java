@@ -218,7 +218,7 @@ public class SongsResource {
 
         UploadSongResponse uploadSongResponse = new UploadSongResponse();
 
-        String uploadedFileUrl = amazonS3Client.uploadFile(bytes);
+        String uploadedFileUrl = amazonS3Client.uploadFile(bytes, "");
 
 //        Integer numberOfFaces = amazonRekognitionClient.countFaces(bytes);
 //        uploadSongResponse.setNumberOfFaces(numberOfFaces);
