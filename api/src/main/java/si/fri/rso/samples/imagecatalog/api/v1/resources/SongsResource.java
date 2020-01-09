@@ -3,6 +3,7 @@ package si.fri.rso.samples.imagecatalog.api.v1.resources;
 //import com.amazonaws.services.s3.AmazonS3Client;
 
 import com.google.gson.Gson;
+import org.apache.commons.io.FileUtils;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import si.fri.rso.samples.imagecatalog.api.v1.dtos.UploadSongResponse;
@@ -32,6 +33,7 @@ import java.util.stream.Collectors;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
+
 
 @ApplicationScoped
 @Path("/songs")
@@ -291,8 +293,14 @@ public class SongsResource {
     @Produces("audio/mp3")
     public Response streamAudio(@HeaderParam("Range") String range) throws Exception {
         // serve media from file system
+        String URLString = "https://rso-music.s3.amazonaws.com/Gryffin+%26+Seven+Lions+-+Need+Your+Love+feat.+Noah+Kahan.mp3";
+
+        URL urlB = new URL(URLString);
+        FileUtils.copyURLToFile(urlB, new File("temp.mp3"));
         System.out.println("before audio");
-        String MEDIA_FILE = "/noSpaces.mp3";
+
+        String MEDIA_FILE = "temp.mp3";
+
         URL url = this.getClass().getResource(MEDIA_FILE);
         File audio = new File(url.getFile());
         System.out.println("after audio");
