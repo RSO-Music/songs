@@ -291,9 +291,11 @@ public class SongsResource {
     @Produces("audio/mp3")
     public Response streamAudio(@HeaderParam("Range") String range) throws Exception {
         // serve media from file system
-        String MEDIA_FILE = "testdata/music/Gryffin & Seven Lions - Need Your Love feat. Noah Kahan.mp3";
+
+        String MEDIA_FILE = "https://rso-music.s3.amazonaws.com/Gryffin+%26+Seven+Lions+-+Need+Your+Love+feat.+Noah+Kahan.mp3";
         URL url = this.getClass().getResource(MEDIA_FILE);
         audio = new File(url.getFile());
+        System.out.println("after audio");
         return buildStream(audio, range);
     }
 
@@ -307,6 +309,7 @@ public class SongsResource {
      */
     private Response buildStream(final File asset, final String range) throws Exception {
         // range not requested : Firefox does not send range headers
+        System.out.println("inside buildStream");
         if (range == null) {
             StreamingOutput streamer = output -> {
                 try (FileChannel inputChannel = new FileInputStream(asset).getChannel(); WritableByteChannel outputChannel = Channels.newChannel(output)) {
