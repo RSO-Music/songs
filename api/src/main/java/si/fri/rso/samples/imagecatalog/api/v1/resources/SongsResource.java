@@ -44,10 +44,11 @@ import java.util.Formatter;
 public class SongsResource {
 
     private final File audio;
+    final int chunk_size = 1024 * 1024; // 1MB chunks
 
     public SongsResource() {
         // serve media from file system
-        String MEDIA_FILE = "testdata/music/Le Castle Vania - John Wick Medley.mp3";
+        String MEDIA_FILE = "./noSpaces.mp3";
         URL url = this.getClass().getResource(MEDIA_FILE);
         audio = new File(url.getFile());
     }
@@ -67,7 +68,7 @@ public class SongsResource {
 
     private Logger log = Logger.getLogger(SongsResource.class.getName());
 
-    final int chunk_size = 1024 * 1024; // 1MB chunks
+
     //private File audio;
 
     @Inject
