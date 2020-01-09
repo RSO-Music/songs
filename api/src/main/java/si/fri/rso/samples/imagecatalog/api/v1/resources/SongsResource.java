@@ -299,10 +299,10 @@ public class SongsResource {
         String URLString = "https://rso-music.s3.amazonaws.com/Gryffin+%26+Seven+Lions+-+Need+Your+Love+feat.+Noah+Kahan.mp3";
 
         URL urlB = new URL(URLString);
-        FileUtils.copyURLToFile(urlB, new File("./temp.mp3"));
+        FileUtils.copyURLToFile(urlB, new File("app/temp.mp3"));
         System.out.println("before audio");
 
-        String MEDIA_FILE = "./temp.mp3";
+        String MEDIA_FILE = "app/temp.mp3";
 
         URL url = this.getClass().getResource(MEDIA_FILE);
         System.out.println(url + "url");
