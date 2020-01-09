@@ -40,7 +40,7 @@ import java.util.Formatter;
 @Path("/songs")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-
+@CrossOrigin(allowOrigin = "*", allowSubdomains = true, supportedHeaders = "*")
 public class SongsResource {
 
     public static String SHAsum(byte[] convertme) throws NoSuchAlgorithmException {
@@ -208,11 +208,12 @@ public class SongsResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-    
+
     @POST
     @Path("/upload")
+    @CrossOrigin(allowOrigin = "*", allowSubdomains = true, supportedHeaders = "*")
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
-    @CrossOrigin()
+
     public Response uploadSong(InputStream uploadedInputStream) {
 
         String songId = UUID.randomUUID().toString();
@@ -257,7 +258,7 @@ public class SongsResource {
 //        }
 
         uploadSongResponse.setMessage("Success." + "songId " + songId + "songLocation " + songLocation + "uploadedFileUrl " + uploadedFileUrl);
-
+        //uploadSongResponse.addHeader("Access-Control-Allow-Origin", "*");
         // Upload image to storage
 
         // Generate event for image processing
