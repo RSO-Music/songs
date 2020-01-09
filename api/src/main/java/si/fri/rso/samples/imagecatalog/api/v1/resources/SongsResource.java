@@ -292,7 +292,7 @@ public class SongsResource {
     public Response streamAudio(@HeaderParam("Range") String range) throws Exception {
         // serve media from file system
         System.out.println("before audio");
-        String MEDIA_FILE = "https://rso-music.s3.amazonaws.com/Gryffin+%26+Seven+Lions+-+Need+Your+Love+feat.+Noah+Kahan.mp3";
+        String MEDIA_FILE = "testdata/music/noSpaces.mp3";
         URL url = this.getClass().getResource(MEDIA_FILE);
         File audio = new File(url.getFile());
         System.out.println("after audio");
