@@ -3,6 +3,7 @@ package si.fri.rso.samples.imagecatalog.api.v1.resources;
 //import com.amazonaws.services.s3.AmazonS3Client;
 
 import com.google.gson.Gson;
+import com.kumuluz.ee.cors.annotations.CrossOrigin;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -146,7 +147,7 @@ public class SongsResource {
         System.out.println(songs);
 
 //        if (songs.getFileLabels() != null) {
-//            System.out.println(Arrays.toString(newFileMetadata.getFileLabels().toArray()));
+//            System.out.println(Arrays.toString(newFcrileMetadata.getFileLabels().toArray()));
 //        }
 //
 //        if (songs.getChannelId() == null || songs.getFileName() == null ||
@@ -207,10 +208,11 @@ public class SongsResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-
+    
     @POST
     @Path("/upload")
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
+    @CrossOrigin()
     public Response uploadSong(InputStream uploadedInputStream) {
 
         String songId = UUID.randomUUID().toString();
