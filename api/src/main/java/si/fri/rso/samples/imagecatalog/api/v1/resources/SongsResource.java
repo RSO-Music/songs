@@ -292,7 +292,7 @@ public class SongsResource {
     public Response streamAudio(@HeaderParam("Range") String range) throws Exception {
         // serve media from file system
         System.out.println("before audio");
-        String MEDIA_FILE = "testdata/music/noSpaces.mp3";
+        String MEDIA_FILE = "/noSpaces.mp3";
         URL url = this.getClass().getResource(MEDIA_FILE);
         File audio = new File(url.getFile());
         System.out.println("after audio");
