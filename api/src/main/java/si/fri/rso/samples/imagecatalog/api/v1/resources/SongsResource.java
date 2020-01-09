@@ -56,7 +56,7 @@ public class SongsResource {
     private Logger log = Logger.getLogger(SongsResource.class.getName());
 
     final int chunk_size = 1024 * 1024; // 1MB chunks
-    private File audio;
+    //private File audio;
 
     @Inject
     private SongsBean songsBean;
@@ -291,10 +291,10 @@ public class SongsResource {
     @Produces("audio/mp3")
     public Response streamAudio(@HeaderParam("Range") String range) throws Exception {
         // serve media from file system
-
+        System.out.println("before audio");
         String MEDIA_FILE = "https://rso-music.s3.amazonaws.com/Gryffin+%26+Seven+Lions+-+Need+Your+Love+feat.+Noah+Kahan.mp3";
         URL url = this.getClass().getResource(MEDIA_FILE);
-        audio = new File(url.getFile());
+        File audio = new File(url.getFile());
         System.out.println("after audio");
         return buildStream(audio, range);
     }
@@ -325,7 +325,7 @@ public class SongsResource {
         /*
           Chunk media if the range upper bound is unspecified. Chrome, Opera sends "bytes=0-"
          */
-        int to = chunk_size + from;
+        int to = 1024 * 1024 + from;
         if (to >= asset.length()) {
             to = (int) (asset.length() - 1);
         }
@@ -333,7 +333,7 @@ public class SongsResource {
             to = Integer.parseInt(ranges[1]);
         }
 
-        final String responseRange = String.format("bytes %d-%d/%d", from, to, asset.length());
+        final String responseRange = String.format("cbytes %d-%d/%d", from, to, asset.length());
         final RandomAccessFile raf = new RandomAccessFile(asset, "r");
         raf.seek(from);
 
