@@ -55,6 +55,9 @@ public class SongsResource {
 
     private Logger log = Logger.getLogger(SongsResource.class.getName());
 
+    final int chunk_size = 1024 * 1024; // 1MB chunks
+    private File audio;
+
     @Inject
     private SongsBean songsBean;
 
@@ -260,29 +263,28 @@ public class SongsResource {
         return Response.status(Response.Status.CREATED).entity(uploadSongResponse).build();
     }
 
-    @Path("listen")
-    public static class MediaResource {
+//        public MediaResource() {
+//            // serve media from file system
+//            String MEDIA_FILE = "testdata/music/Gryffin & Seven Lions - Need Your Love feat. Noah Kahan.mp3";
+//            URL url = this.getClass().getResource(MEDIA_FILE);
+//            audio = new File(url.getFile());
+//        }
 
-        final int chunk_size = 1024 * 1024; // 1MB chunks
-        private final File audio;
+        //A simple way to verify if the server supports range headers.
+//        @HEAD
+//        @Produces("audio/mp3")
+//        public Response header() {
+//            return Response.ok().status(206).header(HttpHeaders.CONTENT_LENGTH, audio.length()).build();
+//        }
 
-        public MediaResource() {
+        @GET
+        @Path("/listen")
+        @Produces("audio/mp3")
+        public Response streamAudio(@HeaderParam("Range") String range) throws Exception {
             // serve media from file system
             String MEDIA_FILE = "testdata/music/Gryffin & Seven Lions - Need Your Love feat. Noah Kahan.mp3";
             URL url = this.getClass().getResource(MEDIA_FILE);
             audio = new File(url.getFile());
-        }
-
-        //A simple way to verify if the server supports range headers.
-        @HEAD
-        @Produces("audio/mp3")
-        public Response header() {
-            return Response.ok().status(206).header(HttpHeaders.CONTENT_LENGTH, audio.length()).build();
-        }
-
-        @GET
-        @Produces("audio/mp3")
-        public Response streamAudio(@HeaderParam("Range") String range) throws Exception {
             return buildStream(audio, range);
         }
 
@@ -333,60 +335,4 @@ public class SongsResource {
                     .header(HttpHeaders.LAST_MODIFIED, new Date(asset.lastModified()));
             return res.build();
         }
-    }
-
-//    @GET
-//    @Produces("audio/mp3")
-//    public Response streamAudio(@HeaderParam("Range") String range) throws Exception {
-//        return buildStream("testdata/music/Gryffin & Seven Lions - Need Your Love feat. Noah Kahan.mp3", range);
-//    }
-//
-//    private Response buildStream(final File asset, final String range) throws Exception {
-//        // range not requested : Firefox, Opera, IE do not send range headers
-//        if (range == null) {
-//            StreamingOutput streamer = new StreamingOutput() {
-//                @Override
-//                public void write(final OutputStream output) throws IOException, WebApplicationException {
-//
-//                    final FileChannel inputChannel = new FileInputStream(asset).getChannel();
-//                    final WritableByteChannel outputChannel = Channels.newChannel(output);
-//                    try {
-//                        inputChannel.transferTo(0, inputChannel.size(), outputChannel);
-//                    } finally {
-//                        // closing the channels
-//                        inputChannel.close();
-//                        outputChannel.close();
-//                    }
-//                }
-//            };
-//            return Response.ok(streamer).header(HttpHeaders.CONTENT_LENGTH, asset.length()).build();
-//        }
-//
-//        String[] ranges = range.split("=")[1].split("-");
-//        final int from = Integer.parseInt(ranges[0]);
-//        /**
-//         * Chunk media if the range upper bound is unspecified. Chrome sends "bytes=0-"
-//         */
-//        int to = 512 * 512 + from;
-//        if (to >= asset.length()) {
-//            to = (int) (asset.length() - 1);
-//        }
-//        if (ranges.length == 2) {
-//            to = Integer.parseInt(ranges[1]);
-//        }
-//
-//        final String responseRange = String.format("bytes %d-%d/%d", from, to, asset.length());
-//        final RandomAccessFile raf = new RandomAccessFile(asset, "r");
-//        raf.seek(from);
-//
-//        final int len = to - from + 1;
-//        final MediaStreamer streamer = new MediaStreamer(len, raf);
-//        Response.ResponseBuilder res = Response.status(Response.Status.PARTIAL_CONTENT).entity(streamer)
-//                .header("Accept-Ranges", "bytes")
-//                .header("Content-Range", responseRange)
-//                .header(HttpHeaders.CONTENT_LENGTH, streamer.getLenth())
-//                .header(HttpHeaders.LAST_MODIFIED, new Date(asset.lastModified()));
-//        return res.build();
-//    }
-
 }
