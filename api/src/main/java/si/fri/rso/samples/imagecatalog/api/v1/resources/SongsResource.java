@@ -261,7 +261,7 @@ public class SongsResource {
     }
 
     @Path("listen")
-    public class MediaResource {
+    public static class MediaResource {
 
         final int chunk_size = 1024 * 1024; // 1MB chunks
         private final File audio;
