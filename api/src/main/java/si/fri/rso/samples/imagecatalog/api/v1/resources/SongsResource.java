@@ -43,6 +43,15 @@ import java.util.Formatter;
 @CrossOrigin(allowOrigin = "*", allowSubdomains = true, supportedHeaders = "*")
 public class SongsResource {
 
+    private final File audio;
+
+    public SongsResource() {
+        // serve media from file system
+        String MEDIA_FILE = "testdata/music/Le Castle Vania - John Wick Medley.mp3";
+        URL url = this.getClass().getResource(MEDIA_FILE);
+        audio = new File(url.getFile());
+    }
+
     public static String SHAsum(byte[] convertme) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-1");
         return byteArray2Hex(md.digest(convertme));
@@ -295,21 +304,21 @@ public class SongsResource {
     @Path("/listen")
     @Produces("audio/mp3")
     public Response streamAudio(@HeaderParam("Range") String range) throws Exception {
-        // serve media from file system
-        String URLString = "https://rso-music.s3.amazonaws.com/Gryffin+%26+Seven+Lions+-+Need+Your+Love+feat.+Noah+Kahan.mp3";
-
-        URL urlB = new URL(URLString);
-        FileUtils.copyURLToFile(urlB, new File("app/temp.mp3"));
-        System.out.println("before audio");
-
-        String MEDIA_FILE = "app/temp.mp3";
-
-        URL url = this.getClass().getResource(MEDIA_FILE);
-        System.out.println(url + "url");
-        //System.out.println
-
-        File audio = new File(url.getFile());
-        System.out.println("after audio");
+//        // serve media from file system
+//        String URLString = "https://rso-music.s3.amazonaws.com/Gryffin+%26+Seven+Lions+-+Need+Your+Love+feat.+Noah+Kahan.mp3";
+//
+//        URL urlB = new URL(URLString);
+//        FileUtils.copyURLToFile(urlB, new File("app/temp.mp3"));
+//        System.out.println("before audio");
+//
+//        String MEDIA_FILE = "app/temp.mp3";
+//
+//        URL url = this.getClass().getResource(MEDIA_FILE);
+//        System.out.println("url" + url);
+//        //System.out.println
+//
+//        File audio = new File(url.getFile());
+//        System.out.println("after audio");
         return buildStream(audio, range);
     }
 
