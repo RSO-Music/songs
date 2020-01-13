@@ -21,9 +21,9 @@ spec:
             - name: KUMULUZEE_SERVER_BASEURL
               value: http://35.242.139.155:8080
             - name: KUMULUZEE_DISCOVERY_ETCD_HOSTS
-              value: http://etcd:2379
+              value: http://35.246.27.12:2379
             - name: KUMULUZEE_CONFIG_ETCD_HOSTS
-              value: http://etcd:2379
+              value: http://35.246.27.12:2379
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
               value: jdbc:postgresql://postgres.cxpwezylclm2.us-east-1.rds.amazonaws.com:5432/postgres
             - name: KUMULUZEE_DATASOURCES0_USERNAME
@@ -31,7 +31,7 @@ spec:
             - name: KUMULUZEE_DATASOURCES0_PASSWORD
               value: postgres1
             - name: KUMULUZEE_HEALTH_CHECKS_ETCDHEALTHCHECK_CONNECTIONURL
-              value: http://etcd:2379/health
+              value: http://35.246.27.12:2379/health
             - name: KUMULUZEE_AWS_SECRET
                 valueFrom:
                   secretKeyRef:

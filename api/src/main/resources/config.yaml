@@ -31,7 +31,7 @@ kumuluzee:
         type: liveness
         jndi-name: jdbc/ImageMetadataDS
       etcd-health-check:
-        connection-url: http://10.4.27.56:2379:2379/health
+        connection-url: http://35.246.27.12:2379/health
   metrics:
     web-instrumentation:
       - name: songs-endpoint
