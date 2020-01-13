@@ -11,7 +11,6 @@ kumuluzee:
     servlet:
       allow-generic-http-requests: true
       allow-origin: "*"
-      allow-subdomains: true
   datasources:
     - jndi-name: jdbc/ImageMetadataDS
       connection-url: jdbc:postgresql://postgres.cxpwezylclm2.us-east-1.rds.amazonaws.com:5432/postgres

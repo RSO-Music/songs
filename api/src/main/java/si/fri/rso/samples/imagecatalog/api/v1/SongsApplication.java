@@ -8,6 +8,6 @@ import javax.ws.rs.core.Application;
 
 @RegisterService
 @ApplicationPath("/v1")
-@CrossOrigin(allowOrigin = "*", allowSubdomains = true, supportedHeaders = "*")
+@CrossOrigin()
 public class SongsApplication extends Application {
 }
