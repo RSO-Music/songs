@@ -12,6 +12,7 @@ kumuluzee:
       allow-generic-http-requests: true
       allow-origin: "*"
       allow-subdomains: true
+      supported-methods: "GET, POST, HEAD, OPTIONS, PUT, DELETE"
   datasources:
     - jndi-name: jdbc/ImageMetadataDS
       connection-url: jdbc:postgresql://postgres.cxpwezylclm2.us-east-1.rds.amazonaws.com:5432/postgres
