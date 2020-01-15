@@ -1,4 +1,4 @@
-# RSO: Image metadata microservice
+# RSO: Song metadata microservice
 
 ## Prerequisites
 
