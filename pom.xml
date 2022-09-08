@@ -37,7 +37,7 @@
         <kumuluzee-cors.version>1.1.0-SNAPSHOT</kumuluzee-cors.version>
 
         <aws-java-sdk.version>1.11.685</aws-java-sdk.version>
-        <postgresql.version>42.2.8</postgresql.version>
+        <postgresql.version>42.4.1</postgresql.version>
     </properties>
 
     <repositories>
